@@ -1,0 +1,53 @@
+/* styles.css */
+
+/* Hamburger menu icon */
+.menu-icon {
+    display: block;
+    padding: 14px 16px;
+    cursor: pointer;
+    color: #ffffff; /* Customize the color */
+    font-size: 20px;
+}
+
+.nav-container {
+    background-color: #3d85c6; /* Customize the background color */
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.nav-container ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #3d85c6; /* Customize the background color */
+}
+
+.nav-container li {
+    float: left;
+}
+
+.nav-container li a {
+    display: block;
+    color: #ffffff; /* Customize the link color */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav-container li a:hover {
+    background-color: #393f4d; /* Customize the link hover background color */
+}
+
+/* Hide the navigation links on small screens */
+@media screen and (max-width: 768px) {
+    .nav-container ul {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+}
