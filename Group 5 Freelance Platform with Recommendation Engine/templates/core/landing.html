@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giggity</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'assets/money.webp' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://kit.fontawesome.com/9b6c75ac8f.js" crossorigin="anonymous"></script>
+  <style>
+    @media(max-width: 500px) {
+      .reverse-columns {
+        flex-direction: column-reverse;
+        display: flex;
+      }
+    }
+
+    .titled {
+      font-family: 'Merriweather', serif !important;
+      font-size: 58px !important;
+      font-weight: 400 !important;
+      line-height: 64px !important;
+    }
+
+    .subtitled {
+      font-family: 'Merriweather', serif !important;
+      font-size: 22px !important;
+      font-weight: 400 !important;
+      line-height: 36px !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NavBar va a todo lo ancho -->
+  <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #CD2A2A; color:black;">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{% url 'index' %}">
+        <img src="{% static 'assets/logo.png' %}">
+      </a>
+    </div>
+    <div class="navbar-menu">
+
+      <div class="navbar-end">
+         
+        {% if request.user.is_authenticated %}
+                <!-- User is logged in, so display a "Sign Out" link -->
+                <a href="{% url 'account_logout' %}" class="navbar-item" style="background-color: white;">
+                    SIGN OUT
+                </a>
+            {% else %}
+                <!-- User is not logged in, so display "Sign In" and "Sign Up" links -->
+                <a href="{% url 'account_login' %}" class="navbar-item" style="background-color: white;">
+                    SIGN IN
+                </a>
+                <a href="{% url 'account_signup' %}" class="navbar-item" style="background-color: rgb(0, 0, 0); color: white;">
+                    SIGN UP
+                </a>
+            {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero del producto -->
+  <section class="hero is-white is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns  is-vcentered reverse-columns">
+          <div class="column
+          is-10-mobile 
+          is-10-tablet 
+          is-5-desktop 
+          is-5-widescreen 
+          is-5-fullhd " data-aos="fade-down">
+            <h1 class="title titled is-1 mb-6">
+              Evolving freelancing with Giggity
+            </h1>
+            <div class="subtitled subtitle">
+              Are you a freelancer looking for exciting opportunities or a business in need of top-notch freelance talent? Look no further! Giggity is your one-stop solution for efficient and effective gig management.
+            </div>
+          </div>
+          <div data-aos="fade-right" class="column
+          is-10-mobile 
+          is-10-tablet 
+          is-4-desktop 
+          is-7-widescreen 
+          is-4-fullhd is-offset-1-fullhd">
+            <figure class="image is-square">
+              <img src="{% static 'assets/quagmire.png' %}">
+            </figure>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-white is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns  is-vcentered">
+          <div data-aos="fade-left" class="column
+          is-10-mobile is-offset-1-mobile
+          is-10-tablet is-offset-1-tablet
+          is-4-desktop is-offset-1-desktop
+          is-4-widescreen is-offset-1-widescreen
+          is-4-fullhd is-offset-1-fullhd">
+            <figure class="image is-square">
+              <img src="{% static 'assets/streamlined.png' %}">
+            </figure>
+          </div>
+          <div data-aos="fade-down" class="column
+          is-10-mobile is-offset-1-mobile
+          is-10-tablet is-offset-1-tablet
+          is-5-desktop is-offset-1-desktop
+          is-5-widescreen is-offset-1-widescreen
+          is-5-fullhd is-offset-1-fullhd">
+            <h1 class="titled title is-1 mb-6">
+              Streamlined Gig Management
+            </h1>
+            <h2 class="subtitled subtitle">
+                Managing freelance gigs has never been easier. Our platform simplifies the process from posting gigs to selecting the perfect freelancer for the job. Say goodbye to administrative headaches and focus on what matters most - your projects.
+            </h2>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-white is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns  is-vcentered reverse-columns">
+          <div data-aos="fade-right" class="column
+          is-10-mobile is-offset-1-mobile
+          is-10-tablet is-offset-1-tablet
+          is-5-desktop is-offset-1-desktop
+          is-5-widescreen is-offset-1-widescreen
+          is-5-fullhd is-offset-1-fullhd">
+            <h1 class="title titled is-1 mb-6">
+                Find Your Perfect Match
+            </h1>
+            <h2 class="subtitle subtitled">
+                Discover a vast pool of talented freelancers from various industries. Our advanced matching algorithm connects you with the right professionals based on skills, experience, and project requirements.
+            </h2>
+          </div>
+          <div data-aos="fade-down" class="column
+          is-10-mobile is-offset-1-mobile
+          is-10-tablet is-offset-1-tablet
+          is-4-desktop is-offset-1-desktop
+          is-4-widescreen is-offset-1-widescreen
+          is-4-fullhd is-offset-1-fullhd" data-aos="fade-up">
+            <figure class="image is-square">
+              <img src="{% static 'assets/recommendations.png' %}">
+            </figure>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-white is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns  is-vcentered">
+          <div data-aos="fade-left" class="column
+          is-10-mobile is-offset-1-mobile
+          is-10-tablet is-offset-1-tablet
+          is-4-desktop is-offset-1-desktop
+          is-4-widescreen is-offset-1-widescreen
+          is-4-fullhd is-offset-1-fullhd">
+            <figure class="image is-square">
+              <img src="{% static 'assets/razorpay.png' %}">
+            </figure>
+          </div>
+          <div data-aos="fade-down" class="column
+          is-10-mobile is-offset-1-mobile
+          is-10-tablet is-offset-1-tablet
+          is-5-desktop is-offset-1-desktop
+          is-5-widescreen is-offset-1-widescreen
+          is-5-fullhd is-offset-1-fullhd">
+            <h1 class="titled title is-1 mb-6">
+                Secure Payment Processing
+            </h1>
+            <h2 class="subtitled subtitle">
+                Enjoy peace of mind with our secure payment system. Pay freelancers with confidence, knowing that your funds are protected until the job is complete to your satisfaction. Say goodbye to payment disputes.
+            </h2>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-medium has-text-centered">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <div data-aos="zoom-in-up" class="column is-8">
+            <h1 class="title titled is-1 mb-6">
+                Join Giggity<span id="typewriter"></span>
+            </h1>
+            <h2 class="subtitle subtitled">
+                Are you ready to revolutionize your freelance gig management experience? 
+                <br>Sign up for Giggity today and unlock a world of opportunities and efficiency.
+            </h2>
+            <h2 class="subtitle subtitled">
+                Start gigging smarter with Giggity - Your Gig Management Companion!
+            </h2>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/TypewriterJS/2.13.1/core.min.js"></script>
+  <script>
+    new Typewriter('#typewriter', {
+      strings: [' Today!', ' Now!', ' 지금!', ' Τώρα!', ' 今!', ' 现在!', ' अब!', ' עכשיו!'],
+      autoStart: true,
+      loop: true,
+    });
+  </script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true
+    });
+  </script>
+</body>
+
+</html>

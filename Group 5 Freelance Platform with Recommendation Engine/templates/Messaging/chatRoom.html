@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+<style>
+    /* Styles for chat messages */
+    .user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+}
+
+.user-name {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.online-status {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.is-online {
+    background-color: #2ecc71; /* Green color for online status */
+}
+
+</style>
+
+
+{% block content %}
+<body>
+    <div class="container">
+        <div class="user-info">
+             <h2> <b>  {{ user.username }}  </b> </h2>
+            <span class="online-status is-online">
+                {% if user.online_status %}
+                <small id="{{user.username}}_small">Online</small>
+                {% else %}
+                <small id="{{user.username}}_small">Offline</small>
+                {% endif %}
+            </span>
+        </div>
+        <div class="chat">
+            {% for message in messages %}
+            {% if message.sender == request.user.username %}
+            <div class="message">
+                
+                
+                <div class="message-header">
+                    <p class="username">You</p>
+                    <p class="timestamp">{{message.timestamp|time:'H:i'}}</p>
+                </div>
+                <div class="message-body">
+                    {{message.message}}
+                </div>
+            </div>
+            {% else %}
+            <div class="message">
+                
+                            
+                <div class="message-header">
+                    <p class="username">{{ user.username }}</p>
+                    <p class="timestamp">{{message.timestamp|time:'H:i'}}</p>
+                </div>
+                <div class="message-body">
+                    {{message.message}}
+                </div>
+            </div>
+           
+            {% endif %}
+            {% endfor %}
+            <!-- Add more messages as needed -->
+        </div>
+        <div class="input-container">
+            <input id="message_input" class="input" type="text" placeholder="Type your message...">
+            <button id="chat-message-submit" class="button is-primary">Send</button>
+        </div>
+    </div>
+</body>
+
+{{user.id|json_script:"json-username"}}
+{{user.username|json_script:"json-username-receiver"}}
+{{request.user.username|json_script:"json-message-username"}}
+
+<script src="{% static 'js/chat.js' %}"></script>
+<script src="{% static 'js/online_status.js' %}"></script>
+<script src="{% static 'js/notify.js' %}"></script>
+
+
+{% endblock %}
+

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="title">Explore</div>
+        <div class="columns is-multiline">
+            {% for post in posts %}
+                <div class="column is-4">
+                    <div class="card large">
+                        <div class="card-image">
+                            <figure class="image is-16by9">
+                                <img src="{{ post.images.url }}" alt="Image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="{% url 'chat' post.freelancer.user_id.username %}">
+                                        <figure class="image is-32x32">
+                                            <img src="{{ post.freelancer.user_id.profile_image.url }}" alt="Profile Image">
+                                        </figure>
+                                    </a>
+                                </div>
+                                <div class="media-content">
+                                    <a href="{% url 'chat' post.freelancer.user_id.username %}">
+                                        {{ post.freelancer.user_id.username }}
+                                    </a>
+                                </div>
+                            </div>
+                            <a href="{% url 'details' post.link%}">
+                            <div class="content">
+                                <p class="title is-4 no-padding">{{ post.name }}</p>
+                                <p>{{ post.description }}</p>
+                            </div>
+                            </a>
+                            <div class="content">
+                                <strong class="strong">Amount: ${{ post.amount }}</strong>
+                            </div>
+                            <div class="content">
+                                <strong class="strong">Tags:</strong>
+                                {% for tag in tags %}
+                                    {% if tag.post == post %}
+                                        <span class="tag is-primary">{{ tag.tag.tag }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

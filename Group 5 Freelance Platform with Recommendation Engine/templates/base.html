@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %} | Giggity</title>
+  <link rel="icon" type="image/x-icon" href="/media/imgs/landing/money.webp" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9b6c75ac8f.js" crossorigin="anonymous"></script>
+
+  <style>
+      @media(max-width: 500px) {
+          .reverse-columns {
+          flex-direction: column-reverse;
+          display: flex;
+          }
+      }
+
+      .titled {
+          font-family: 'Merriweather', serif !important;
+          font-size: 58px !important;
+          font-weight: 400 !important;
+          line-height: 64px !important;
+      }
+
+      .subtitled {
+          font-family: 'Merriweather', serif !important;
+          font-size: 22px !important;
+          font-weight: 400 !important;
+          line-height: 36px !important;
+      }
+
+    
+  </style>
+
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #CD2A2A; color:black;">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'landing' %}">
+                <img src="{% static 'assets/logo.png' %}">
+            </a>
+        </div>
+    
+        <div class="navbar-menu">  
+            <div class="navbar-start">
+                <div class="navbar-item">
+                    <a href="{% url 'top'%}">
+                        <div class="button is-white">
+                            <span class="icon is-small">
+                                <i class="fa-solid fa-compass"></i>
+                            </span>
+                        </div> 
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a href="{% url 'recommendations'%}">
+                        <div class="button is-white">
+                            <span class="icon is-small">
+                                <i class="fa-solid fa-heart"></i>
+                            </span>
+                        </div> 
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a href="{% url 'create_post'%}">
+                        <div class="button is-white">
+                            <span class="icon is-small">
+                                <i class="fa-solid fa-plus"></i>
+                            </span>
+                        </div> 
+                    </a>
+                </div>
+            </div>          
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="field is-vcentered has-addons has-addons-right">
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="text" id="search-input">
+                            <span class="icon is-small is-left">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </span>
+                        </p>                 
+                        
+                        <p class="control">
+                            <a class="button" id="search-button">
+                                <i class="fa-solid fa-bolt "></i>
+                            </a>
+                        </p>
+                    </div>
+                </div> 
+            
+            {% if request.user.is_authenticated %}
+                <!-- User is logged in, so display a "Sign Out" link -->
+                <a href="{% url 'account_logout' %}" class="navbar-item" style="background-color: white;">
+                    SIGN OUT
+                </a>
+            {% else %}
+                <!-- User is not logged in, so display "Sign In" and "Sign Up" links -->
+                <a href="{% url 'account_login' %}" class="navbar-item" style="background-color: white;">
+                    SIGN IN
+                </a>
+                <a href="{% url 'account_signup' %}" class="navbar-item" style="background-color: rgb(0, 0, 0); color: white;">
+                    SIGN UP
+                </a>
+            {% endif %}
+        
+    
+            </div>
+        </div>
+    </nav>
+
+
+    <main>
+        <section class="hero is-fullheight-with-navbar">
+            <div class="hero-body has-background-grey-lighter">
+                <div class="container">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </section>        
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+          <div class="content has-text-centered">
+            <div class="soc">
+              <a href="#"><i class="fa fa-github-alt fa-lg" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-youtube fa-lg" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a>
+            </div>
+            <p>
+              <strong>Giggity</strong> by <a href="http://jgthms.com">Varad Joshi</a>,<a href="http://jgthms.com">Rohan Waghode</a>,<a href="http://jgthms.com">Meet Jamsutkar</a> and <a href="http://jgthms.com">Aman Dhumal</a>.
+              <br>The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. <br>
+            </p>
+          </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+    
+            searchButton.addEventListener('click', function () {
+                const query = searchInput.value;
+                if (query) {
+                    const searchUrl = `/search/${query}`; // Construct the search URL
+                    window.location.href = searchUrl; // Redirect to the search URL
+                }
+            });
+        });
+    </script>
+</body>
+</html>

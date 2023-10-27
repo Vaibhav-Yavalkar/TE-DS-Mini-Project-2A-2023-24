@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}My Orders{% endblock %}
+
+{% block content %}
+  <h1 class="title">My Orders</h1>
+  <div class="columns is-multiline">
+    {% for order in orders %}
+      <div class="column is-one-third">
+        <div class="card">
+          <div class="card-content">
+            <p class="title">Order ID: {{ order.id }}</p>
+            <p class="subtitle">Amount: ${{ order.amount }}</p>
+            <p>Service: {{ order.service.title }}</p>
+            <p>Timestamp: {{ order.timestamp }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
