@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+  <h1 class="title is-3">Search Results for "{{ query }}"</h1>
+
+  {% if posts %}
+    <div class="columns is-multiline">
+      {% for post in posts %}
+        <div class="column is-one-third">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="{{ post.images.url }}" alt="{{ post.name }}">
+              </figure>
+            </div>
+            <div class="card-content">
+              <p class="title is-4">{{ post.name }}</p>
+              <p class="subtitle is-6">Posted by {{ post.freelancer.user_id.username }}</p>
+              <p>{{ post.description }}</p>
+              <p class="is-6">Amount: ${{ post.amount }}</p>
+                {% for tag in tags %}
+                  {% if tag.post == post %}
+                    <span class="tag is-primary">{{ tag.tag.tag }}</span>
+                  {% endif %}
+                {% endfor %}
+              <a href="{% url 'details' post.link %}" class="button is-primary">View Details</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No results found for "{{ query }}".</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,148 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %} | Giggity</title>
+  <link rel="icon" type="image/x-icon" href="/media/imgs/landing/money.webp" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9b6c75ac8f.js" crossorigin="anonymous"></script>
+
+  <style>
+      @media(max-width: 500px) {
+          .reverse-columns {
+          flex-direction: column-reverse;
+          display: flex;
+          }
+      }
+
+      .titled {
+          font-family: 'Merriweather', serif !important;
+          font-size: 58px !important;
+          font-weight: 400 !important;
+          line-height: 64px !important;
+      }
+
+      .subtitled {
+          font-family: 'Merriweather', serif !important;
+          font-size: 22px !important;
+          font-weight: 400 !important;
+          line-height: 36px !important;
+      }
+
+      .card-content:hover {
+          background-color: rgb(0, 137, 152);
+          color: white;
+          .title{
+            color:white;
+          }
+          .strong{
+            color:white;
+          }
+      }
+  </style>
+
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #CD2A2A; color:black;">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'landing' %}">
+            <img src="{% static 'assets/logo.png' %}">
+            </a>
+        </div>
+    
+        <div class="navbar-menu">            
+            <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="field is-vcentered has-addons has-addons-right">
+                    <p class="control has-icons-left has-icons-right">
+                        <input class="input has-background-dark has-text-white" type="text" id="search-input">
+                        <span class="icon is-small is-left has-text-danger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                    </p>                 
+                    
+                    <p class="control">
+                        <a class="button has-background-white" id="search-button">
+                            <i class="fa-solid fa-bolt "></i>
+                        </a>
+                    </p>
+                </div>
+            </div> 
+            
+            {% if request.user.is_authenticated %}
+                <!-- User is logged in, so display a "Sign Out" link -->
+                <a href="{% url 'account_logout' %}" class="navbar-item" style="background-color: white;">
+                    SIGN OUT
+                </a>
+            {% else %}
+                <!-- User is not logged in, so display "Sign In" and "Sign Up" links -->
+                <a href="{% url 'account_login' %}" class="navbar-item" style="background-color: white;">
+                    SIGN IN
+                </a>
+                <a href="{% url 'account_signup' %}" class="navbar-item" style="background-color: rgb(0, 0, 0); color: white;">
+                    SIGN UP
+                </a>
+            {% endif %}
+        
+    
+            </div>
+        </div>
+    </nav>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+  </head>
+  <body>    
+    <section class="hero is-fullheight-with-navbar">
+        <div class="hero-body has-background-grey-lighter">
+            <div class="container">
+                <div class="columns is-centered is-vcentered">
+                    <div class="column is-responsive is-4 box">
+                        {% block body %}
+                        {% if messages %}
+                        <div class="notification is-centered">
+                            <strong>{% trans "Messages:" %}</strong>
+                            <ul>
+                                {% for message in messages %}
+                                <li>{{message}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        <div class="content is-size-5">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  </body>
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <div class="soc">
+          <a href="#"><i class="fa fa-github-alt fa-lg" aria-hidden="true"></i></a>
+          <a href="#"><i class="fa fa-youtube fa-lg" aria-hidden="true"></i></a>
+          <a href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
+          <a href="#"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a>
+        </div>
+        <p>
+          <strong>Giggity</strong> by <a href="http://jgthms.com">Varad Joshi</a>,<a href="http://jgthms.com">Rohan Waghode</a>,<a href="http://jgthms.com">Meet Jamsutkar</a> and <a href="http://jgthms.com">Aman Dhumal</a>.
+          <br>The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. <br>
+        </p>
+      </div>
+    </div>
+</footer>
+</html>
