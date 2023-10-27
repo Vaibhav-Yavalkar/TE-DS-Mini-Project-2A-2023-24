@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block nav %}
+<li><a href="index.html">Home</a></li>
+<li><a href="CropRecommendation.html">Crop</a></li>
+<li><a href="FertilizerRecommendation.html" class="active">Fertilizer</a></li>
+<li><a href="DiseasePrediction.html">Disease</a></li>
+{% endblock %}
+
+
+{% block body %}
+<h1 class="text-center" style="margin-top:5%;">
+    <b>Disease :-<span class="gold-text"><i> {{ prediction['class'] }} </i></span></b>
+    <br><br>
+    <!-- <img src="{{url_for('static',filename=user_file)}}" width="780px" height="450px" alt={{prediction}}> -->
+</h1>
+{% endblock %}
