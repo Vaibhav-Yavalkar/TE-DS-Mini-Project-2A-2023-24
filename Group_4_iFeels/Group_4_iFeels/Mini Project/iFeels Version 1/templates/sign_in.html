@@ -1,0 +1,77 @@
+{% extends 'base1.html' %}
+
+{% block title %}Sign in{% endblock title %}
+
+{% block body %}
+
+<div class="container text-center pb-3">
+    <h1>Sign in &<br>Immerse yourself in the world of Music via iFeels</h1>
+</div>
+
+<!-- form -->
+<div class="container" style="width: 40%;">
+
+    <form method="POST" action="/home">
+
+        {% csrf_token %}
+        <!-- Username input -->
+        <div class="form-outline mb-4">
+            <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required
+                autofocus />
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password"
+                required />
+        </div>
+
+        <div class="col">
+            <!-- Forgot password -->
+            <a href="/forgot_password" target="_blank">Forgot password?</a>
+        </div>
+
+        <!-- Submit button -->
+        <div class="d-grid gap-2">
+            <button type="button" class="btn btn-outline-warning btn-lg px-4" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop">Try It Out!</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p class="text-dark fw-bold mb-0">You Have successfully signed in!</p>
+                    </div>
+                    <div class="modal-footer px-1 py-1">
+                        <a href="http://127.0.0.1:5000/">
+                        <button type="button" class="btn btn-secondary btn-sm"
+                            data-bs-dismiss="modal">Click me to start camera</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Register buttons -->
+        <p class="d-flex justify-content-center mt-5 mb-4">Not a member?
+            <a href="/sign_up" style="color: blue;">Register</a>
+        </p>
+        <p class="d-flex justify-content-center pt-0 mb-0">or sign up with:</p>
+        {% load socialaccount %}
+
+
+     
+
+        {% if user.is_authenticated %}
+        <p>Your are signed in as {{user.email}}</p>
+        {% comment %} <p>Your are signed in as {{user.password}}</p> {% endcomment %}
+        <a href="/">Sign out</a>
+        {% endif %}
+
+    </form>
+
+</div>
+
+{% endblock body %}

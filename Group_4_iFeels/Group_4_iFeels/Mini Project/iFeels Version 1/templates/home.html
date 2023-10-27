@@ -1,0 +1,39 @@
+{% extends 'base2.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+
+{% block body %}
+
+<!-- The below functionn/emthod is to check the current user -->
+<!-- <h1>Welcome
+        <u>
+            <bold><i>{{request.user}}<i /></bold>
+        </u>
+    </h1> -->
+
+<!-- hero -->
+<div class="container">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="/static/images/anime girl listening music 225 x 180.jpeg" class="d-block mx-lg-auto img-fluid"
+                alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+            <h2 class="display-6 fw-bold text-danger lh-1 mb-3">This is our application which will help you to
+                listen to
+                songs as per your mood.</h2>
+            <hr class="my-4">
+            <p class="lead fs-4">Click Below to check Your Mood!</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a href="/camera">
+                    <button type="button" class="btn btn-outline-warning btn-lg px-4">Try It Out!</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
