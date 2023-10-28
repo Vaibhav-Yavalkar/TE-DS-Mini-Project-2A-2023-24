@@ -1,0 +1,56 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'user_navigation.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Recommendation Form</title>
+    <style>
+        body {
+            /* Set the background image and adjust other properties */
+            background-image: url('job_image.jpg'); /* Change to your job-related image */
+            background-size: cover; /* Adjust according to your preference */
+            background-repeat: no-repeat; /* Adjust according to your preference */
+            background-position: center center; /* Adjust according to your preference */
+        }
+        .form-container {
+            background-color:lightgrey; /* Set form background color */
+            width: 500px; /* Adjust the width as needed */
+            margin: auto; /* Center the form */
+            padding: 50px; /* Add some padding inside the form */
+            border-radius: 20px; /* Optional: Add rounded corners */
+        }
+        .form-container input {
+            width: 100%; /* Make the input fields fill the container */
+            padding: 10px; /* Add padding for input fields */
+            margin-bottom: 10px; /* Add some space between inputs */
+        }
+        .form-container button {
+            width: 100%; /* Make the button fill the container */
+            padding: 10px; /* Add padding for the button */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+    <h1>Job Recommendation</h1>
+
+    <form method="post" action="{% url 'jobrecommendation_form' %}">
+        {% csrf_token %}
+
+        <label for="skills">Skills (comma-separated):</label>
+        <input type="text" name="skills" id="skills" required>
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+</body>
+</html>
+
+{% include 'footer.html' %}
+
+{% endblock %}

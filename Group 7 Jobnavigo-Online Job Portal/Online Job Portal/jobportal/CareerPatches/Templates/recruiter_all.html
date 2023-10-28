@@ -1,0 +1,46 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'admin_navigation.html' %}
+
+<marquee style ="font-family: Monotype Corsiva; font-size: 25px; color:white;background-color: black; font-weight: bold; margin-top: 1%; ">
+    View Recruiters - All
+</marquee>
+<hr>
+<div class="container ">
+<table class="table table-hover" id="example">
+    <thead>
+        <tr style="background-color: #DEB887">
+            <th>S.No</th>
+            <th>Full Name</th>
+            <th>Email ID</th>
+            <th>Contact</th>
+            <th>Gender</th>
+            <th>Company</th>
+            <th>Image</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+            <td>{{i.user.username}}</td>
+            <td>{{i.mobile}}</td>
+            <td>{{i.gender}}</td>
+            <td>{{i.company}}</td>
+            <td><img src = "{{i.image.url}}" style="width:80px ; height : 80px"></td>
+            <td>{{i.status}}</td>
+            <td><a href="{% url 'change_status' i.id %}" class="btn btn-success btn-sm">Change Status</a>
+            | <a href="{% url 'delete_recruiter' i.user.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

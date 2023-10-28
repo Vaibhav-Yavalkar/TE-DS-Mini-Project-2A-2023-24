@@ -1,0 +1,25 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'user_navigation.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Recommendation Result</title>
+</head>
+<body>
+    <h1>Your Job Recommendations</h1>
+
+    <h2>Recommended Jobs:</h2>
+    <ul>
+        {% for job in recommended_jobs %}
+            <li>{{ job }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+{% include 'footer.html' %}
+
+{% endblock %}
