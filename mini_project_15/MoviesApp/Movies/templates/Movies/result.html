@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+    background:black;
+}
+
+        .poster-container {
+            display: flex;
+            overflow-x: auto; /* Enable horizontal scrolling if there are too many posters */
+            border-radius: 4px;
+    
+    background: rgba(0, 0, 0, 0.75);
+        }
+        .poster {
+            width: 350px; /* Set the width of each poster */
+            
+            margin-right: 10px; /* Add some spacing between posters */
+        
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="poster-container">
+        {%for movie in show%}
+        <img class="poster" src="{{movie}}" alt="Movie poster">
+        <!-- Add more poster images as needed -->
+        {%endfor%}
+    </div>
+</body>
+</html>

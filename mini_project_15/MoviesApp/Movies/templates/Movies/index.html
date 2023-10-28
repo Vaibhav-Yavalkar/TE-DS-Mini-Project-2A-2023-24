@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'Movies/style.css' %}">
+    <title>MoviesFlix - A Platform that Recommends Some Awesome Movies</title>
+</head>
+<body>
+    <header class="showcase">
+        <div class="showcase-top">
+            <a href="{% url 'Register_Page' %}" class="btn btn-rounded">Sign up</a>
+        </div>
+
+        <div class="showcase-content">
+            <h1>Discover next</h1>
+            <p>Let movies find you, effortlessly</p>
+            <a href="{% url 'Login_Page' %}" class="btn btn-xl">
+                Start Exploring <i class="fas fa-chevron-right btn-icon"></i>
+            </a>
+        </div>
+    </header>
+
+    <section class="tabs">
+
+        <div class="container">
+            <div id="tab-1" class="tab-item tab-border">
+                <i class="fas fa-door-open fa-3x"></i> <!-- fas is used for font awesome -->
+                <p class="hide-sm">Pause Anytime</p>
+            </div>
+
+            <div id="tab-2" class="tab-item">
+                <i class="fas fa-tablet-alt fa-3x"></i> <!-- fas is used for font awesome -->
+                <p class="hide-sm">Recommend Anywhere</p>
+            </div>
+
+            <div id="tab-3" class="tab-item">
+                <i class="fas fa-tags fa-3x"></i> <!-- fas is used for font awesome -->
+                <p class="hide-sm">Enjoy Our Recommendations for Free</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tab-content">
+        <div class="container">
+            <!-- Tab 1 Content -->
+            <!--
+            <div id="tab-1-content" class="tab-content-item show">
+                <div class="tab-1-content-inner">
+                    <div>
+                        <p class="text-lg">Try Our Recommendations Risk-Free. No Strings Attached.</p>
+                        <a href="#" class="btn btn-lg">Start Exploring </a>
+                    </div>
+                    <img src="Images/tab-content-1.png" alt="">
+                </div>
+            </div> -->
+            <div id="tab-2-content" class="tab-content-item">
+                <div class="tab-2-content-top">
+                    <p class="text-lg">
+                        Recommends Movies anytime, anywhere - personalized for you.
+                    </p>
+                    <a href="{% url 'Login_Page' %}" class="btn btn-lg">Start Exploring</a>
+                </div>
+                <div class="tab-2-content-bottom">
+                    <img src="Images/tab-content-2-1.png" alt="">
+                    <!-- <p class="text-md">Use Any Computer</p> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'Movies/search.css' %}">
+</head>
+<body>
+    <div class="search-container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p}}
+        </form>
+        <button id="search-button"><i class="fa fa-search"></i></button>
+    </div>
+</body>
+</html>
