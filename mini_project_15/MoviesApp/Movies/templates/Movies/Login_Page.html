@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'Movies/Login_style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="#"><img src="{% static 'Movies/logo.png' %}" alt="logo"></a>
+    </nav>
+    <div class="form-wrapper">
+        <h2>Sign In</h2>
+        <form action="#">
+            <div class="form-control">
+                <input type="email">
+                <label>Enter your email</label>
+            </div>
+            <div class="form-control">
+                <input type="password">
+                <label>Password</label>
+            </div>
+            <button>Sign-In</button>
+            <div class="form-help">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Remember me</label>
+                </div>
+                <a href="#">Need help?</a>
+            </div>
+        </form>
+        <p>New User? <a href="{% url 'Register_Page' %}">Sign up now</a></p>
+        <small>
+            <!-- <a href="#">Learn more.</a> -->
+        </small>
+    </div>
+</body>
+</html>

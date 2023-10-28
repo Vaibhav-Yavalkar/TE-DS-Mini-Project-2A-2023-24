@@ -1,0 +1,39 @@
+/* Add styling for the search container */
+
+body {
+    background: #000;
+    background-image: url('../Movies/background.png');
+}
+.search-container {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    background-color: #e50914;
+    border-radius: 230px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+/* Style the search input 
+#search-input {
+    border: none;
+    background: none;
+    color: #0e0202;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+}/*
+
+/* Style the search button */
+#search-button {
+    background: none;
+    border: none;
+    color: #0a0000;
+    font-size: 60px;
+    cursor: pointer;
+}
+
+/* Adjust search icon styling */
+.fa-search {
+    font-size: 40px;
+}
