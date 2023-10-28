@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dash.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #000; /* Set text color to black */
+        }
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .chart-container {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .table-container {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            color: #000; /* Set text color to black */
+        }
+        th {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 8px;
+            margin: 5px;
+            width: 20%;
+        }
+        input[type="button"] {
+            padding: 8px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .total-container {
+            margin-top: 10px;
+        }
+
+        /* CSS for table rows */
+        tr {
+            background-color: #f2f2f2; /* Gray background for table rows */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+    <div class="container">
+        <div class="chart-container">
+            <!-- Pie chart will be inserted here -->
+        </div>
+        <!-- Breakfast Table -->
+        <div class="table-container">
+            <h2>Breakfast</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Calories</th>
+                        <th>Carbs</th>
+                        <th>Protein</th>
+                    </tr>
+                </thead>
+                <tbody id="breakfast-table">
+                    <!-- Table data for breakfast will be inserted here -->
+                </tbody>
+            </table>
+            <div class="form-container">
+                <!-- Add Food Form for Breakfast -->
+                <input type="text" id="breakfast-name" placeholder="Name">
+                <input type="number" id="breakfast-calories" placeholder="Calories">
+                <input type="number" id="breakfast-carbs" placeholder="Carbs">
+                <input type="number" id="breakfast-protein" placeholder="Protein">
+                <input type="button" value="Add Food" onclick="addFood('breakfast')">
+            </div>
+            <div class="total-container">
+                Total Calories: <span id="breakfast-total-calories">0</span>
+                Total Carbs: <span id="breakfast-total-carbs">0</span>
+                Total Protein: <span id="breakfast-total-protein">0</span>
+            </div>
+        </div>
+
+        <!-- Lunch Table -->
+        <div class="table-container">
+            <h2>Lunch</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Calories</th>
+                        <th>Carbs</th>
+                        <th>Protein</th>
+                    </tr>
+                </thead>
+                <tbody id="lunch-table">
+                    <!-- Table data for lunch will be inserted here -->
+                </tbody>
+            </table>
+            <div class="form-container">
+                <!-- Add Food Form for Lunch -->
+                <input type="text" id="lunch-name" placeholder="Name">
+                <input type="number" id="lunch-calories" placeholder="Calories">
+                <input type="number" id="lunch-carbs" placeholder="Carbs">
+                <input type="number" id="lunch-protein" placeholder="Protein">
+                <input type="button" value="Add Food" onclick="addFood('lunch')">
+            </div>
+            <div class="total-container">
+                Total Calories: <span id="lunch-total-calories">0</span>
+                Total Carbs: <span id="lunch-total-carbs">0</span>
+                Total Protein: <span id="lunch-total-protein">0</span>
+            </div>
+        </div>
+
+        <!-- Dinner Table -->
+        <div class="table-container">
+            <h2>Dinner</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Calories</th>
+                        <th>Carbs</th>
+                        <th>Protein</th>
+                    </tr>
+                </thead>
+                <tbody id="dinner-table">
+                    <!-- Table data for dinner will be inserted here -->
+                </tbody>
+            </table>
+            <div class="form-container">
+                <!-- Add Food Form for Dinner -->
+                <input type="text" id="dinner-name" placeholder="Name">
+                <input type="number" id="dinner-calories" placeholder="Calories">
+                <input type="number" id="dinner-carbs" placeholder="Carbs">
+                <input type="number" id="dinner-protein" placeholder="Protein">
+                <input type="button" value="Add Food" onclick="addFood('dinner')">
+            </div>
+            <div class="total-container">
+                Total Calories: <span id="dinner-total-calories">0</span>
+                Total Carbs: <span id="dinner-total-carbs">0</span>
+                Total Protein: <span id="dinner-total-protein">0</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Create objects to store meal data
+        const meals = {
+            breakfast: { foods: [], totalCalories: 0, totalCarbs: 0, totalProtein: 0 },
+            lunch: { foods: [], totalCalories: 0, totalCarbs: 0, totalProtein: 0 },
+            dinner: { foods: [], totalCalories: 0, totalCarbs: 0, totalProtein: 0 },
+        };
+    
+        function addFood(meal) {
+            var name = document.getElementById(meal + '-name').value;
+            var calories = parseFloat(document.getElementById(meal + '-calories').value) || 0;
+            var carbs = parseFloat(document.getElementById(meal + '-carbs').value) || 0;
+            var protein = parseFloat(document.getElementById(meal + '-protein').value) || 0;
+    
+            // Create a table row
+            var table = document.getElementById(meal + '-table');
+            var row = document.createElement('tr');
+            var nameCell = document.createElement('td');
+            var caloriesCell = document.createElement('td');
+            var carbsCell = document.createElement('td');
+            var proteinCell = document.createElement('td');
+    
+            nameCell.textContent = name;
+            caloriesCell.textContent = calories;
+            carbsCell.textContent = carbs;
+            proteinCell.textContent = protein;
+    
+            row.appendChild(nameCell);
+            row.appendChild(caloriesCell);
+            row.appendChild(carbsCell);
+            row.appendChild(proteinCell);
+    
+            table.appendChild(row);
+    
+            // Save the food data to the corresponding meal
+            meals[meal].foods.push({ name, calories, carbs, protein });
+    
+            // Update total values
+            meals[meal].totalCalories += calories;
+            meals[meal].totalCarbs += carbs;
+            meals[meal].totalProtein += protein;
+    
+            // Update the total values displayed on the page
+            document.getElementById(meal + '-total-calories').textContent = meals[meal].totalCalories;
+            document.getElementById(meal + '-total-carbs').textContent = meals[meal].totalCarbs;
+            document.getElementById(meal + '-total-protein').textContent = meals[meal].totalProtein;
+    
+            // Clear the input fields
+            document.getElementById(meal + '-name').value = '';
+            document.getElementById(meal + '-calories').value = '';
+            document.getElementById(meal + '-carbs').value = '';
+            document.getElementById(meal + '-protein').value = '';
+        }
+    </script>
+    

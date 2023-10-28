@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='12.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Food Recommendation System</title>
+
+</head>
+<body>
+    <header>
+        <h1>Custom Food Recommendation System</h1>
+    </header>
+
+    <main>
+        <form action="{{ url_for('custom') }}" method="post">
+        <form id="customFoodForm">
+            <label for="calories">Calories (kcal):</label>
+            <input type="number" id="calories" name="calories" required>
+
+            <label for="fat">Fat Content (g):</label>
+            <input type="number" id="fat" name="fat" required>
+
+            <label for="saturatedFat">Saturated Fat Content (g):</label>
+            <input type="number" id="saturatedFat" name="saturatedFat" required>
+
+            <label for="cholesterol">Cholesterol Content (mg):</label>
+            <input type="number" id="cholesterol" name="cholesterol" required>
+
+            <label for="sodium">Sodium Content (mg):</label>
+            <input type="number" id="sodium" name="sodium" required>
+
+            <label for="sugar">Sugar Content (g):</label>
+            <input type="number" id="sugar" name="sugar" required>
+
+            <label for="protein">Protein Content (g):</label>
+            <input type="number" id="protein" name="protein" required>
+
+            <label for="activityLevel">Select your activity level:</label>
+            <select id="activityLevel" name="activityLevel" required>
+                <option value="sedentary">Sedentary (little or no exercise)</option>
+                <option value="lightlyActive">Lightly active (light exercise/sports 1-3 days/week)</option>
+                <option value="moderatelyActive">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+                <option value="veryActive">Very active (hard exercise/sports 6-7 days a week)</option>
+                <option value="extraActive">Extra active (very hard exercise/sports & physical job or 2x training)</option>
+            </select>
+
+             <<button type="submit">Submit</button>
+        </form>
+    </main>
+
+    <script>
+        function submitForm() {
+            // Add logic to process the form data and provide custom food recommendation
+            alert("Form submitted! Add logic for custom food recommendation here.");
+        }
+    </script>
+</body>
+</html>
