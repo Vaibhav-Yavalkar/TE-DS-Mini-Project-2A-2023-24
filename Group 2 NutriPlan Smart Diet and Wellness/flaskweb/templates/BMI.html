@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dash.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #000;
+        }
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .chart-container {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .table-container {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            color: #000;
+        }
+        th {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 8px;
+            margin: 5px;
+            width: 20%;
+        }
+        input[type="button"] {
+            padding: 8px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        tr {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" step="0.01">
+        <br><br>
+        <label for="height">Height (m):</label>
+        <input type="number" id="height" step="0.01">
+        <br><br>
+        <button onclick="calculateBMI()">Calculate BMI</button>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>BMI (Body Mass Index)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="bmiOutput"></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            var weight = parseFloat(document.getElementById('weight').value);
+            var height = parseFloat(document.getElementById('height').value);
+            var outputElement = document.getElementById('bmiOutput'); // Add an element for output
+    
+            if (isNaN(weight) || isNaN(height) || height === 0) {
+                alert("Please enter valid weight and height values.");
+                return;
+            }
+    
+            var bmi = weight / (height * height );
+            var bmiCategory = getBMICategory(bmi);
+    
+            // Display BMI value and category with a custom message
+            document.getElementById('bmiOutput').textContent = "Your BMI is " + bmi.toFixed(2) + " and the BMI category is " + bmiCategory;
+        }
+    
+        function getBMICategory(bmi) {
+            if (bmi < 18.5) {
+                return "Underweight";
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                return "Normal Weight";
+            } else if (bmi >= 25 && bmi < 29.9) {
+                return "Overweight";
+            } else {
+                return "Obese";
+            }
+        }
+    </script>
+       
+    
+</body>
+</html>
