@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="with=device-width, initial- scale=1.0">
+     <title>Twitter Sentimental Analysis</title>
+     <link rel="stylesheet" href="style.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,800;1,600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="header">
+        <nav>
+            
+            <a href="index.html"><img src="images/logo.png" class="nav-img"></a>
+            <div class="nav-links">
+                <ul>
+                  <!-- button -->
+                    <li><a href="index.html" class="hero-btn">HOME</a></li> 
+                </ul>
+            </div>
+
+           <!-- Search Form -->
+        <div class="search-form">
+            <form action="http://localhost:8503" method="post">
+                <!--<input type="text" name="search_query" placeholder="Enter the tweet to be analysed">-->
+                
+                   <button id="submit">Submit</button>
+                   <script>
+                    document.getElementById("submit").addEventListener("click",function(){windows.location.href='localhost:8503';});
+                   </script>
+                
+               
+            </form>
+        </div>
+    </section>
+</body>
+</html>
+
+        </nav>
+        <div class="text-box">
+            <h1>Sentiment Analysis</h1>
+            <p>Categorises tweets under Positive, Neutral or Negative!</p>
+        </div>
+
+    </section>
+</body>
+</html>
