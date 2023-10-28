@@ -1,0 +1,2 @@
+easyocr==1.6.2
+translators==5.4.2
