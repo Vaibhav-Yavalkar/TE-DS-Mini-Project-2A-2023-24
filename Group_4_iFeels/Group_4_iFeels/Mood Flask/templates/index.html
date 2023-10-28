@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emotion Recognition</title>
+</head>
+<body>
+    <h1>Real-time Emotion Recognition</h1>
+    <p>Last Recognized Mood: <span id="recognized_mood">{{ last_recognized_label }}</span></p>
+
+    <img src="{{ url_for('video_feed') }}" width="640" height="480" style="border:1px solid #000;">
+    
+    <script>
+        function updateMood(mood) {
+            document.getElementById("recognized_mood").textContent = mood;
+        }
+    </script>
+</body>
+</html>

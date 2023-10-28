@@ -1,0 +1,48 @@
+{% extends 'base1.html' %}
+
+{% block title %}
+Camera
+{% endblock title %}
+
+
+{% block body %}
+<div class="container">
+
+    <h3 class="text-info text-center mb-3 mb-3">Scan your face here!!</h3>
+
+    <div class="embed-responsive embed-responsive-4by3 text-center mb-4">
+        <video class="embed-responsive-item" id="video" autoplay></video>
+    </div>
+
+    <div class="d-grid gap-2 col-6 mx-auto mb-5">
+        <button class="btn btn-success mb-3" id="startButton" type="button">Start Camera</button>
+        <button class="btn btn-danger" id="stopBwutton" type="button">Recommend Now</button>
+    </div>
+
+    <script>
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const video = document.getElementById('video');
+
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+            } catch (error) {
+                console.error('Error accessing the camera:', error);
+            }
+        }
+
+        function stopCamera() {
+            const stream = video.srcObject;
+            const tracks = stream.getTracks();
+            tracks.forEach((track) => track.stop());
+            video.srcObject = null;
+        }
+
+        startButton.addEventListener('click', startCamera);
+        stopButton.addEventListener('click', stopCamera);
+    </script>
+</div>
+
+{% endblock body %}
