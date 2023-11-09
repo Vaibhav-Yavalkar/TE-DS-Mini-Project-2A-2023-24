@@ -1,0 +1,23 @@
+pip install -U textblob
+python -m textblob.download_corpora
+
+pip install Flask
+pip install django-bootstrap4
+
+
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">---7
+
+"navbar navbar-expand-lg bg-body-tertiary"
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">--
+
+For button
+<form class="d-flex" role="search">
+        <button class="btn btn-outline-success" type="submit">Login</button>
+      </form>
+
+      <ul>
+        <li>Statement is negative</li>
+        <li>Statement is positive</li>
+        <li>Statement is neutral</li>
+        <li>Statement is negative</li>
